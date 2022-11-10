@@ -1,7 +1,7 @@
 import streamlit as st
 import pandas as pd
 
-st.title('Test Application Menu')
+st.title('Welcome to my Restaurant')
 
 #--------------------------#
 st.header('Breakfast')
