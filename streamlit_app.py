@@ -15,5 +15,8 @@ st.header('Build-Your-Own Smoothie')
 # Get fruit list from S3 bucket and add multiselect
 fruit_list = pd.read_csv("https://uni-lab-files.s3.us-west-2.amazonaws.com/dabw/fruit_macros.txt")
 fruit_list = fruit_list.set_index("Fruit")
-st.multiselect("Pick your fruits: ", list(fruit_list.index))
-st.dataframe(fruit_list)
+
+selected = st.multiselect("Pick your fruits: ", list(fruit_list.index), ['Banana', 'Strawberries'])
+to_display = fruit_list.loc[selected]
+
+st.dataframe(to_display)
