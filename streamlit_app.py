@@ -23,5 +23,7 @@ to_display = fruit_list.loc[selected]
 st.dataframe(to_display)
 
 st.header('FruityVice Fruit Advice')
-fruityvice_response = requests.get("https://fruityvice.com/api/fruit/watermelon")
-st.text(fruityvice_response.json())
+fruityvice_response = requests.get("https://fruityvice.com/api/fruit/" + "kiwi")
+
+fruityvice_normalized = pd.json_normalize(fruityvice_response.json())
+st.dataframe(fruityvice_normalized)
