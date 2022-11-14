@@ -23,6 +23,8 @@ to_display = fruit_list.loc[selected]
 st.dataframe(to_display)
 
 st.header('FruityVice Fruit Advice')
+fruit_choice = st.text_input('What fruit would you like information about?','Kiwi')
+st.write('You have entered ', fruit_choice)
 fruityvice_response = requests.get("https://fruityvice.com/api/fruit/" + "kiwi")
 
 fruityvice_normalized = pd.json_normalize(fruityvice_response.json())
