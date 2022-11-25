@@ -24,22 +24,27 @@ to_display = fruit_list.loc[selected]
 
 st.dataframe(to_display)
 
+# create fruit api function
+def get_fruit_data(fruit):
+
+    fruityvice_response = requests.get("https://fruityvice.com/api/fruit/" + fruit)
+    fruityvice_normalised = pd.json_normalize(fruityvice_response.json())
+
+    return fruityvice_normalised
+
 st.header('Fruit Advice')
 try:
+    fruit_choice = st.text_input('What fruit would you like information about?')
   
-  fruit_choice = st.text_input('What fruit would you like information about?')
-  
-  if not fruit_choice:
-    st.error("Please sekect a fruit to get its info")
-  
-  else:
-    
-    fruityvice_response = requests.get("https://fruityvice.com/api/fruit/" + fruit_choice)
-    fruityvice_normalized = pd.json_normalize(fruityvice_response.json())
-    st.dataframe(fruityvice_normalized)
-   
+    if not fruit_choice:
+        st.error("Please sekect a fruit to get its info")
+
+    else:
+        fruityvice_normalised = get_fruit_data(fruit_choice)
+        st.dataframe(fruityvice_normalised)
+
 except URLError as e:
-  st.error()
+    st.error()
   
 my_connection = snowflake.connector.connect(**st.secrets["snowflake"])
 my_cursor = my_connection.cursor()
