@@ -2,6 +2,7 @@ import streamlit as st
 import pandas as pd
 import requests
 import snowflake.connector
+from urllib.error import URLError
 
 st.title('Welcome to my Restaurant')
 
@@ -24,13 +25,22 @@ to_display = fruit_list.loc[selected]
 st.dataframe(to_display)
 
 st.header('Fruit Advice')
-fruit_choice = st.text_input('What fruit would you like information about?','Kiwi')
-st.write('You have entered ', fruit_choice)
-fruityvice_response = requests.get("https://fruityvice.com/api/fruit/" + fruit_choice)
-
-fruityvice_normalized = pd.json_normalize(fruityvice_response.json())
-st.dataframe(fruityvice_normalized)
-
+try:
+  
+  fruit_choice = st.text_input('What fruit would you like information about?')
+  
+  if not fruit_choice:
+    st.error("Please sekect a fruit to get its info")
+  
+  else:
+    
+    fruityvice_response = requests.get("https://fruityvice.com/api/fruit/" + fruit_choice)
+    fruityvice_normalized = pd.json_normalize(fruityvice_response.json())
+    st.dataframe(fruityvice_normalized)
+   
+except URLError as e:
+  st.error()
+  
 my_connection = snowflake.connector.connect(**st.secrets["snowflake"])
 my_cursor = my_connection.cursor()
 my_cursor.execute("SELECT * FROM FRUIT_LOAD_LIST")
@@ -41,3 +51,4 @@ st.dataframe(data_rows)
 
 # Allow user to add fruit to the list
 add_fruit = st.text_input("What fruit would you like to add?")
+my_cursor.execute(f"INSERT INTO FRUIT_LOAD_LIST VALUES {add_fruit}")
