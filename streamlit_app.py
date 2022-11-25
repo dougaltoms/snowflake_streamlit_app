@@ -33,11 +33,12 @@ def get_fruit_data(fruit):
     return fruityvice_normalised
 
 st.header('Fruit Advice')
+
 try:
     fruit_choice = st.text_input('What fruit would you like information about?')
   
     if not fruit_choice:
-        st.error("Please sekect a fruit to get its info")
+        st.error("Please select a fruit to get its info")
 
     else:
         fruityvice_normalised = get_fruit_data(fruit_choice)
@@ -54,6 +55,6 @@ data_rows = my_cursor.fetchall()
 st.header("Fruit list contains:")
 st.dataframe(data_rows)
 
-# Allow user to add fruit to the list
-add_fruit = st.text_input("What fruit would you like to add?")
-my_cursor.execute(f"INSERT INTO FRUIT_LOAD_LIST VALUES {add_fruit}")
+# # Allow user to add fruit to the list
+# add_fruit = st.text_input("What fruit would you like to add?")
+# my_cursor.execute(f"INSERT INTO FRUIT_LOAD_LIST VALUES {add_fruit}")
