@@ -38,3 +38,6 @@ my_cursor.execute("SELECT * FROM FRUIT_LOAD_LIST")
 data_rows = my_cursor.fetchall()
 st.header("Fruit list contains:")
 st.dataframe(data_rows)
+
+# Allow user to add fruit to the list
+add_fruit = st.text_input("What fruit would you like to add?")
