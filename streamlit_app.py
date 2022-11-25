@@ -23,7 +23,7 @@ to_display = fruit_list.loc[selected]
 
 st.dataframe(to_display)
 
-st.header('FruityVice Fruit Advice')
+st.header('Fruit Advice')
 fruit_choice = st.text_input('What fruit would you like information about?','Kiwi')
 st.write('You have entered ', fruit_choice)
 fruityvice_response = requests.get("https://fruityvice.com/api/fruit/" + fruit_choice)
@@ -33,8 +33,8 @@ st.dataframe(fruityvice_normalized)
 
 my_connection = snowflake.connector.connect(**st.secrets["snowflake"])
 my_cursor = my_connection.cursor()
-my_cursor.execute("SELECT CURRENT_USER(), CURRENT_ACCOUNT(), CURRENT_REGION()")
+my_cursor.execute("SELECT * FROM FRUIT_LOAD_LIST")
 
 data_row = my_cursor.fetchone()
-st.text("Snowflake Connection")
+st.text("Fruit list contains:")
 st.text(data_row)
