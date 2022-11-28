@@ -212,7 +212,7 @@ def my_slow_function(arg1, arg2):
 # DISPLAYING IMAGES
 # ----------------------------------------------------------------------------------
 
-image_url = 'https://cdn.freelogovectors.net/wp-content/uploads/2020/09/beazly-logo-768x204.png')
+image_url = 'https://cdn.freelogovectors.net/wp-content/uploads/2020/09/beazly-logo-768x204.png'
 st.image(image_url, caption='Snowflake', width = 200)
 
 # images in columns
