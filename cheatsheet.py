@@ -213,7 +213,7 @@ def my_slow_function(arg1, arg2):
 # ----------------------------------------------------------------------------------
 
 from PIL import Image
-image = Image.open('https://avatars.githubusercontent.com/u/6453780?s=280&v=4')
+image = Image.open('https://cdn.freelogovectors.net/wp-content/uploads/2020/09/beazly-logo-768x204.png')
 st.image(image, caption='Snowflake', width = 200)
 
 # images in columns
