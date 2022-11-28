@@ -212,23 +212,22 @@ def my_slow_function(arg1, arg2):
 # DISPLAYING IMAGES
 # ----------------------------------------------------------------------------------
 
-from PIL import Image
-image = Image.open('https://cdn.freelogovectors.net/wp-content/uploads/2020/09/beazly-logo-768x204.png')
-st.image(image, caption='Snowflake', width = 200)
+image_url = 'https://cdn.freelogovectors.net/wp-content/uploads/2020/09/beazly-logo-768x204.png')
+st.image(image_url, caption='Snowflake', width = 200)
 
 # images in columns
 col1, col2, col3, col4 = st.columns(4)
 with col1:
-  st.image(image, caption='Snowflake', width = 200)
+  st.image(image_url, caption='Snowflake', width = 200)
 
 with col2:
-  st.image(image, caption='Snowflake', width = 200)
+  st.image(image_url, caption='Snowflake', width = 200)
 
 with col3:
-  st.image(image, caption='Snowflake', width = 200)
+  st.image(image_url, caption='Snowflake', width = 200)
 
 with col4:
-  st.image(image, caption='Snowflake', width = 200)
+  st.image(image_url, caption='Snowflake', width = 200)
 
 
 st.title('🎈 Image Table Demo')
